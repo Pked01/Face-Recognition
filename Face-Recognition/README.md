@@ -40,20 +40,6 @@ print(cast_list)
 face_rec.downloaded_images(cast_list)
 ```
 
-    Folder contains files --Matthew McConaughey--  you want to continue(y/n)n
-    Folder contains files --Woody Harrelson--  you want to continue(y/n)n
-    Folder contains files --Rachel McAdams--  you want to continue(y/n)n
-    Folder contains files --Kelly Reilly--  you want to continue(y/n)n
-    Folder contains files --Vince Vaughn--  you want to continue(y/n)n
-    Folder contains files --Taylor Kitsch--  you want to continue(y/n)n
-    Folder contains files --Colin Farrell--  you want to continue(y/n)n
-    Folder contains files --Michelle Monaghan--  you want to continue(y/n)n
-    Folder contains files --Kevin Dunn--  you want to continue(y/n)n
-    Folder contains files --Michael Potts--  you want to continue(y/n)n
-    Folder contains files --Tory Kittles--  you want to continue(y/n)n
-    Folder contains files --Alexandra Daddario--  you want to continue(y/n)n
-
-
 - Data Preparation
 
 
@@ -84,7 +70,7 @@ face_rec.partial_train_model(X,y,minm_image_process=30,threshold_accuracy=.9,cla
       DeprecationWarning)
 
 
--Viewing output
+- Viewing output
 
 
 ```python
