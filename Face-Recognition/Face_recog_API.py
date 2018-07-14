@@ -1,3 +1,12 @@
+'''
+Script name : Face_recog_API
+Description : uses dlib, openface to detect Faces, uses sklearn to to classify and recognize them
+Author : Prateek Khandelwal
+First Edit : 15 June 2018
+'''
+
+
+
 
 import os,sys,re,time,dlib,subprocess,pickle,cv2
 import tmdbsimple as tmdb
@@ -200,7 +209,7 @@ class FacialRecognition(object):
         if self.face_detector_type=='cnn':
             face_descriptor = [self.facerec.compute_face_descriptor(image, self.shape_pred(image,i.rect))  for i in self.face_detector(image,1)]
         else:
-            face_descriptor = [self.facerec.compute_face_descriptor(image, self.shape_pred(image,i))  for i in self.face_detector(image)]
+            face_descriptor = [self.facerec.compute_face_descriptor(image, self.shape_pred(image,i))  for i in self.face_detector(image,1)]
             
         return face_descriptor
     
@@ -499,7 +508,7 @@ class FacialRecognition(object):
         Autoresizing is done for any image more than 300 in max dimension
         minm_num: minimum number of images in a class
         output:get_all_files from folders and get encoding out of it
-        dump_file_path: dumps a tuple of X,y
+        load_data: to load preprocessed filed
         """
         if load_data:
             try: 
@@ -572,7 +581,7 @@ class FacialRecognition(object):
                 print('dumping output')
                 pickle.dump([X,y],open(os.path.join(self.dump_file_path,'[X,y]_encoded_file.pickle'),'wb'),protocol=2)
             print("returning prepare data")
-            return [X,y]
+        return [X,y]
     
     def process_data(self,X,y,minm_num=30):
         """
@@ -642,7 +651,7 @@ class FacialRecognition(object):
         """
         inv_labels=self.inv_map(self.labels)
         #frame=frame.mean(axis=2)
-        face_locations = self.face_detector(frame)
+        face_locations = self.face_detector(frame,1)
         if len(face_locations)>0:
             face_encodings = self.get_face_embedding(frame)
             if verbose:
@@ -686,4 +695,5 @@ class FacialRecognition(object):
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.5, (255, 255, 255), 1)
         return frame
+
 
